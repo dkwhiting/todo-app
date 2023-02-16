@@ -1,0 +1,27 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+}
+
+#root {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+}
+
+.new-todo form {
+  display: flex;
+  flex-direction: column;
+}
+
+.new-todo {
+  transition: width 500ms, height 500ms;
+}
