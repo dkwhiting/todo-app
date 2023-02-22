@@ -13,7 +13,7 @@ export const ACTIONS = {
 const reducer = (todos, action) => {
   switch (action.type) {
     case ACTIONS.ADD_TODO:
-      return [...todos, newTodo(action.payload.name)]
+      return [...todos, newTodo(action.payload.name, action.payload.dueDate, action.payload.details)]
     case ACTIONS.TOGGLE_TODO:
       return todos.map(todo => {
         if (todo.id === action.payload.id) {
@@ -30,20 +30,21 @@ const reducer = (todos, action) => {
 
 export default function App() {
   const [todos, dispatch] = useReducer(reducer, [])
-  const [showNewTodo, setShowNewTodo] = useState(false)
 
   return (
     <div className="App">
-      <NavBar showNewTodo={showNewTodo} setShowNewTodo={setShowNewTodo} />
-      <div className="new-todo" style={{ width: showNewTodo ? '100%' : '0' }}>
-        <NewTodo showNewTodo={showNewTodo} setShowNewTodo={setShowNewTodo} dispatch={dispatch} />
-      </div>
-      {todos.map(todo => {
-        return (
-          <Todo todo={todo} dispatch={dispatch} key={todo.id} />
-        )
-      })}
+      <NavBar dispatch={dispatch} />
+      <div className="todos-list">
 
-    </div>
+        {
+          todos.map(todo => {
+            return (
+              <Todo todo={todo} dispatch={dispatch} key={todo.id} />
+            )
+          })
+        }
+      </div>
+
+    </div >
   )
 }

@@ -10,18 +10,113 @@ body {
   width: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: orange;
 }
 
 .App {
+  width: 80%;
+  height: 80%;
+  display: flex;
+  gap: 20px;
+  background-color: white;
+}
+
+.navbar {
+  background-color: lightgrey;
+  width: 150px;
+}
+
+.navbar-bottom {
+  position: relative;
+}
+
+.todos-list {
   display: flex;
   flex-direction: column;
 }
 
-.new-todo form {
+.new-todo-overlay {
+  background-color: rgba(255, 255, 255, 0.598);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+  pointer-events: none;
+}
+
+.new-todo-overlay.show {
+  opacity: 1;
+  pointer-events: visible;
+}
+
+.new-todo-content {
+  background-color: beige;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 8px;
+  transform: translateY(-200%);
+  transition: all 0.2s ease-in-out;
+  transform: scale(0);
+}
+
+.new-todo-overlay.show .new-todo-content {
+  /* transform: translateY(0); */
+  transform: scale(1);
+}
+
+.new-todo-content>* {
+  flex: 1;
+}
+
+.new-todo-content form {
+  width: 100%;
   display: flex;
   flex-direction: column;
 }
 
-.new-todo {
-  transition: width 500ms, height 500ms;
+.new-todo-content form input {
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.223);
+  border: none;
+  padding: 5px;
+}
+
+.new-todo-content form input.date {
+  max-width: 120px;
+}
+
+.new-todo-content form textarea.details {
+  font-family: inherit;
+  resize: none;
+  border: none;
+  overflow: hidden;
+  border: none;
+  padding: 5px
+}
+
+.new-todo-header {
+  padding: 2px 5px;
+  width: 100%;
+  background-color: rgb(171, 235, 184);
+}
+
+.new-todo-body {
+  width: 100%;
+}
+
+.new-todo-button {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
 }
