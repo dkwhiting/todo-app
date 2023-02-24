@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react'
+import { useEffect } from 'react'
 import { ACTIONS } from './App'
 
 export const newTodo = (name, dueDate, details) => {
@@ -17,7 +18,18 @@ const NewTodo = ({ dispatch, setShowNewTodo, showNewTodo }) => {
   const [dueDate, setDueDate] = useState('')
   const [priority, setPriority] = useState('low')
 
+  const closeOnEscape = (e) => {
+    if ((e.charCode || e.keyCode) === 27) {
+      setShowNewTodo(false)
+    }
+  }
 
+  useEffect(() => {
+    document.body.addEventListener('keydown', closeOnEscape)
+    return () => {
+      document.body.removeEventListener('keydown', closeOnEscape)
+    }
+  }, [])
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -42,9 +54,9 @@ const NewTodo = ({ dispatch, setShowNewTodo, showNewTodo }) => {
             <input className="date" type="date" value={dueDate} onChange={e => setDueDate(e.target.value)} />
             <span>
               Priority:
-              <button className="priority-button" type='button' style={{ backgroundColor: priority === 'low' ? 'green' : 'white' }} onClick={() => setPriority('low')}>Low</button>
-              <button className="priority-button" type='button' style={{ backgroundColor: priority === 'medium' ? 'yellow' : 'white' }} onClick={() => setPriority('medium')}>Medium</button>
-              <button className="priority-button" type='button' style={{ backgroundColor: priority === 'high' ? 'red' : 'white' }} onClick={() => setPriority('high')}>High</button>
+              <button className={`priority-button low ${priority === 'low' ? 'active' : null}`} type='button' onClick={() => setPriority('low')}>Low</button>
+              <button className={`priority-button medium ${priority === 'medium' ? 'active' : null}`} type='button' onClick={() => setPriority('medium')}>Medium</button>
+              <button className={`priority-button high ${priority === 'high' ? 'active' : null}`} type='button' onClick={() => setPriority('high')}>High</button>
               <button type="submit">ADD TO DO</button>
             </span>
           </form>

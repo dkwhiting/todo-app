@@ -12,16 +12,28 @@
   -webkit-text-size-adjust: 100%;
 }
 
-body {
+* {
+  box-sizing: border-box;
   margin: 0;
-  display: flex;
+  padding: 0;
+}
+
+body,
+html {
+  height: 100%;
+  width: 100%;
   min-width: 320px;
-  min-height: 100vh;
+}
+
+#root {
+  height: 100%;
+  width: 100%;
 }
 
 h1,
 h2,
-h3 {
+h3,
+p {
   margin: 0;
 }
 
