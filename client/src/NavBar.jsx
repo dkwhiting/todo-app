@@ -15,17 +15,17 @@ import NavBarItem from './NavBarItem'
 
 const NavBar = ({ dispatch }) => {
   const [toggleOpen, setToggleOpen] = useState(false)
-  const [showNewTodo, setShowNewTodo] = useState(false)
+
 
   return (
     <>
-      <div className={`navbar ${toggleOpen ? 'open' : 'closed'}`}>
-        <FontAwesomeIcon
-          icon={barsIcon}
-          onClick={() => setToggleOpen(!toggleOpen)}
-        />
+      <div className={`navbar ${toggleOpen ? 'open' : 'closed'}`} onClick={() => setToggleOpen(!toggleOpen)}>
 
-        <div className="navbar-main">
+        <div className='navbar-toggle'>
+          <FontAwesomeIcon icon={barsIcon} />
+        </div>
+
+        <div className="navbar-main" onClick={(e) => e.stopPropagation()}>
           <NavBarItem
             title={'Tasks'}
             icon={listIcon}
@@ -46,7 +46,7 @@ const NavBar = ({ dispatch }) => {
           />
 
         </div>
-        <div className="navbar-bottom">
+        <div className="navbar-bottom" onClick={(e) => e.stopPropagation()}>
           <NavBarItem
             title={'Account'}
             icon={userIcon}
@@ -66,7 +66,7 @@ const NavBar = ({ dispatch }) => {
             toggleOpen={toggleOpen}
           />
 
-          <NewTodo dispatch={dispatch} showNewTodo={showNewTodo} setShowNewTodo={setShowNewTodo} />
+
         </div>
       </div>
     </>

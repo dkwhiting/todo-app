@@ -1,7 +1,10 @@
 import { useReducer, useState } from 'react'
 import Todo from './Todo'
+import Todos from './Todos'
 import NewTodo, { newTodo } from './NewTodo'
 import NavBar from './NavBar'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCirclePlus } from '@fortawesome/free-solid-svg-icons'
 import './App.css'
 
 export const ACTIONS = {
@@ -30,21 +33,20 @@ const reducer = (todos, action) => {
 
 export default function App() {
   const [todos, dispatch] = useReducer(reducer, [])
+  const [showNewTodo, setShowNewTodo] = useState(false)
+
+
 
   return (
     <div className="App">
       <NavBar dispatch={dispatch} />
-      <div className="todos-list">
-
-        {
-          todos.map(todo => {
-            return (
-              <Todo todo={todo} dispatch={dispatch} key={todo.id} />
-            )
-          })
-        }
-      </div>
-
+      <Todos dispatch={dispatch} todos={todos} />
+      <NewTodo dispatch={dispatch} showNewTodo={showNewTodo} setShowNewTodo={setShowNewTodo} />
+      <FontAwesomeIcon
+        icon={faCirclePlus}
+        className="new-todo-button"
+        onClick={() => setShowNewTodo(true)}
+      />
     </div >
   )
 }

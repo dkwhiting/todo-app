@@ -36,6 +36,21 @@
   margin-top: auto;
 }
 
+.navbar-toggle {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  border-radius: 50%;
+}
+
+.navbar-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  cursor: pointer;
+}
+
 .navbar button {
   background-color: none;
 }
@@ -47,7 +62,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  background-color: rgba(255, 255, 255, 0.211);
+  background-color: rgba(255, 255, 255, 0.25);
   transition: all 0.3s ease-in-out;
   z-index: 999;
 }
@@ -62,6 +77,10 @@
   width: 100%;
   display: flex;
   align-items: center;
+}
+
+.navbar-item:hover {
+  cursor: pointer;
 }
 
 .navbar-item .icon {
@@ -84,8 +103,6 @@
 
 }
 
-.new-todo-button {}
-
 .logo-container {
   color: red;
   font-family: 'MuseoModerno', cursive;
@@ -93,19 +110,31 @@
   overflow: visible;
 }
 
-.navbar-toggle {
-  align-self: flex-end;
-  margin-right: 8px;
-}
-
-.navbar-toggle-button.open {
-  transform: rotate(-180deg);
-}
-
 
 .todos-list {
   display: flex;
   flex-direction: column;
+}
+
+.new-todo-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  padding: -1px;
+  color: rgb(120, 220, 111);
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  font-size: 41px;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.359);
+  border-radius: 50%;
+}
+
+.new-todo-button:hover {
+  color: rgba(120, 220, 111, 0.7);
+  cursor: pointer;
 }
 
 .new-todo-overlay {
