@@ -6,6 +6,7 @@ const { client } = require('../db')
 
 //ROUTES
 router.use('/users', require('./users'));
+router.use('/tasks', require('./tasks'));
 
 //ERROR HANDLER
 router.use('/*', (error, req, res, next) => {

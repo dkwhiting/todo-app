@@ -45,13 +45,32 @@ const createTaskCategory = async (taskId, categoryId) => {
   }
 }
 
+const getTaskById = async (taskId) => {
+  try {
+    const { rows: [task] } = await client.query(`
+    SELECT * FROM tasks
+    WHERE id = ${taskId}
+    `)
+    return task
+  } catch (error) {
+    console.error('error getting task')
+    throw error
+  }
+}
+
 const getTasksByUserId = async (userId) => {
   try {
     const { rows: tasks } = await client.query(`
     SELECT * FROM tasks
     WHERE "userId" = ${userId}
     `)
-    return tasks
+    const newTasks = []
+    tasks.forEach(async (task) => {
+      const category = await getCategoryByTaskId(task.id)
+      task.category = category.name
+      newTasks.push(task)
+    })
+    return newTasks
   } catch (error) {
     console.error('error getting tasks')
     throw error
@@ -65,6 +84,21 @@ const getCategoriesByUserId = async (userId) => {
     WHERE "userId" = ${userId}
     `)
     return categories
+  } catch (error) {
+    console.error('error getting categories')
+    throw error
+  }
+}
+
+const getCategoryByTaskId = async (taskId) => {
+  try {
+    const { rows: [category] } = await client.query(`
+    SELECT * FROM categories
+    JOIN task_categories
+      ON categories.id = task_categories."categoryId"
+    WHERE task_categories."taskId" = ${taskId}
+    `)
+    return category
   } catch (error) {
     console.error('error getting categories')
     throw error
