@@ -11,6 +11,7 @@ import {
   faCalendar as calendarIcon,
   faList
 } from '@fortawesome/free-solid-svg-icons'
+import arrowDownToLine from './assets/arrow-line-down.svg'
 import NavBarItem from './NavBarItem'
 
 const NavBar = ({ dispatch }) => {
@@ -19,10 +20,10 @@ const NavBar = ({ dispatch }) => {
 
   return (
     <>
-      <div className={`navbar ${toggleOpen ? 'open' : 'closed'}`} onClick={() => setToggleOpen(!toggleOpen)}>
+      <div className={`navbar ${toggleOpen ? 'open' : 'closed'}`} >
 
-        <div className='navbar-toggle'>
-          <FontAwesomeIcon icon={barsIcon} />
+        <div className={`navbar-toggle ${toggleOpen ? 'open' : 'closed'}`} onClick={() => setToggleOpen(!toggleOpen)}>
+          <img src={arrowDownToLine} />
         </div>
 
         <div className="navbar-main" onClick={(e) => e.stopPropagation()}>

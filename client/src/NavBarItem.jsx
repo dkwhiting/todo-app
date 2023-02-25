@@ -7,12 +7,10 @@ const NavBarItem = ({ title, icon, path, toggleOpen }) => {
   const [hover, setHover] = useState(false)
 
   return (
-
     <div
       className={`navbar-item ${toggleOpen ? 'expanded' : null}`}
       onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
-    >
+      onMouseLeave={() => setHover(false)}>
       <div className="icon">
         <FontAwesomeIcon icon={icon} />
       </div>
